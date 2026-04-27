@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { COLLECTIONS_LIST } from "@/lib/copy/collections";
 import { APPLICATIONS_LIST } from "@/lib/copy/applications";
 
+export const dynamic = "force-static";
+
 const BASE_URL =
   process.env.GH_PAGES === "1"
     ? "https://paninbz-debug.github.io/Lumo"
