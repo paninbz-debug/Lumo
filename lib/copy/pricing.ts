@@ -3,7 +3,24 @@
  * Тексты — §6.7, §6.8, §5.3 CONTENT_RESEARCH.
  */
 
-export const PRICING_PAGE = {
+type Alternative = {
+  name: string;
+  pricePerM2: string;
+  lifespan: string;
+  aesthetic: string;
+  whenChoose: string;
+  featured?: boolean;
+};
+
+export const PRICING_PAGE: {
+  hero: { label: string; title: string; rangeFrom: string; rangeTo: string; unit: string; body: string };
+  factors: { title: string; body: string }[];
+  alternatives: Alternative[];
+  whatIncluded: string[];
+  whatNotIncluded: string[];
+  faq: { q: string; a: string }[];
+  ctas: { primary: string; secondary: string };
+} = {
   hero: {
     label: "Цена — открытая вилка",
     title: "Сколько стоит квадратный метр",
@@ -170,4 +187,4 @@ export const PRICING_PAGE = {
     primary: "Запросить расчёт по объекту",
     secondary: "Запросить образец A4",
   },
-} as const;
+};
