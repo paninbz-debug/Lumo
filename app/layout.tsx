@@ -35,8 +35,17 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const BASE_URL =
+  process.env.GH_PAGES === "1"
+    ? "https://paninbz-debug.github.io/Lumo"
+    : "https://lumo.studio";
+
 export const metadata: Metadata = {
-  title: "LUMO — Премиум-студия применения жидкого металла | Партнёр AuraMetal",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "LUMO — Премиум-студия применения жидкого металла | Партнёр AuraMetal",
+    template: "%s",
+  },
   description:
     "Премиальное применение жидкого металла на стенах, фасадах и мебели. Латунь, медь, бронза, никель, алюминий. Москва, по предварительной записи. Партнёр AuraMetal.",
   keywords: [
@@ -54,7 +63,14 @@ export const metadata: Metadata = {
     description: "Разница не в банке. Разница в руках.",
     locale: "ru_RU",
     type: "website",
+    siteName: "LUMO",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "LUMO — жидкий металл, нанесённый как ремесло",
+    description: "Разница не в банке. Разница в руках.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

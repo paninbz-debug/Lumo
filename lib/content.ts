@@ -279,12 +279,14 @@ export const FINAL_CTA = {
 } as const;
 
 export const NAV = [
-  { href: "#collections", label: "Коллекции" },
-  { href: "#craft", label: "Применения" },
-  { href: "#craft", label: "Ремесло" },
-  { href: "#journal", label: "Журнал" },
-  { href: "#trade", label: "Trade" },
-  { href: "#contact", label: "Контакты" },
+  { href: "/material", label: "Материал" },
+  { href: "/collections", label: "Коллекции" },
+  { href: "/applications", label: "Применения" },
+  { href: "/craft", label: "Ремесло" },
+  { href: "/pricing", label: "Цена" },
+  { href: "/trade", label: "Trade" },
+  { href: "/journal", label: "Журнал" },
+  { href: "/contacts", label: "Контакты" },
 ] as const;
 
 export const FOOTER = {
