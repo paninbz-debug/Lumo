@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Unbounded, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -66,7 +68,9 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          {children}
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
           <Toaster
             position="bottom-right"
             theme="dark"
@@ -75,7 +79,7 @@ export default function RootLayout({
                 background: "var(--bg-card)",
                 color: "var(--text-primary)",
                 border: "1px solid var(--border-strong)",
-                fontFamily: "var(--font-inter)",
+                fontFamily: "var(--font-inter), sans-serif",
               },
             }}
           />
