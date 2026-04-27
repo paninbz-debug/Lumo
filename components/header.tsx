@@ -50,7 +50,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-9">
-          {NAV.filter((_, i) => i !== 2).map((item) => (
+          {NAV.map((item) => (
             <Link
               key={item.label}
               href={item.href}
@@ -73,7 +73,7 @@ export function Header() {
             </button>
           )}
           <Link
-            href="#contact"
+            href="/contacts"
             className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-warm text-[#0a0908] text-[13px] font-semibold tracking-[0.05em] uppercase hover:opacity-90 transition-opacity"
           >
             Заказать выкрас
@@ -97,7 +97,7 @@ export function Header() {
         )}
       >
         <div className="container-lumo py-10 flex flex-col gap-1">
-          {NAV.filter((_, i) => i !== 2).map((item) => (
+          {NAV.map((item) => (
             <Link
               key={item.label}
               href={item.href}
@@ -108,7 +108,7 @@ export function Header() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/contacts"
             onClick={() => setOpen(false)}
             className="mt-8 inline-flex items-center justify-center px-5 py-4 rounded-full bg-gradient-warm text-[#0a0908] text-sm font-semibold tracking-[0.05em] uppercase"
           >

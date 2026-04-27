@@ -39,7 +39,7 @@ export function Footer() {
             Меню
           </div>
           <ul className="space-y-3">
-            {NAV.filter((_, i) => i !== 2).map((item) => (
+            {NAV.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
