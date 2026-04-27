@@ -65,22 +65,22 @@ export function FinalCta() {
             className="mt-16 md:mt-20 max-w-[820px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
           >
             <div className="md:col-span-1">
-              <label className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
+              <label htmlFor="lead-name" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
                 {FINAL_CTA.fields.name}
               </label>
-              <input name="name" type="text" required autoComplete="name" className="lumo-input" />
+              <input id="lead-name" name="name" type="text" required autoComplete="name" className="lumo-input" />
             </div>
             <div className="md:col-span-1">
-              <label className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
+              <label htmlFor="lead-contact" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
                 {FINAL_CTA.fields.contact}
               </label>
-              <input name="contact" type="text" required placeholder="@username или +7…" className="lumo-input" />
+              <input id="lead-contact" name="contact" type="text" required placeholder="@username или +7…" className="lumo-input" />
             </div>
             <div className="md:col-span-1">
-              <label className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
+              <label htmlFor="lead-object-type" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
                 {FINAL_CTA.fields.objectType}
               </label>
-              <select name="objectType" required defaultValue="" className="lumo-input">
+              <select id="lead-object-type" name="objectType" required defaultValue="" aria-label={FINAL_CTA.fields.objectType} className="lumo-input">
                 <option value="" disabled>
                   —
                 </option>
@@ -92,16 +92,16 @@ export function FinalCta() {
               </select>
             </div>
             <div className="md:col-span-1">
-              <label className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
+              <label htmlFor="lead-area" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
                 {FINAL_CTA.fields.area}
               </label>
-              <input name="area" type="number" min={1} step={1} required className="lumo-input" />
+              <input id="lead-area" name="area" type="number" min={1} step={1} required className="lumo-input" />
             </div>
             <div className="md:col-span-2">
-              <label className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
+              <label htmlFor="lead-date" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">
                 {FINAL_CTA.fields.date}
               </label>
-              <input name="date" type="date" required className="lumo-input" />
+              <input id="lead-date" name="date" type="date" required className="lumo-input" />
             </div>
             <div className="md:col-span-2 mt-4 flex flex-col items-center gap-5">
               <MovingBorderButton type="submit" ariaLabel={FINAL_CTA.submit}>

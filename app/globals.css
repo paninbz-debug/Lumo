@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* sr-only — visually hidden but accessible for screen-readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ============ TOKENS ============ */
 :root {
   /* dark by default */
@@ -8,7 +21,7 @@
   --bg-card: #1a1614;
   --text-primary: #f2ead3;
   --text-secondary: #b8ac97;
-  --text-muted: #6b6457;
+  --text-muted: #8a826f;
   --border: #2a241f;
   --border-strong: #3a322b;
   --accent-brass: #b89968;
