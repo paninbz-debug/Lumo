@@ -136,6 +136,48 @@ body {
   animation: shimmer 6s linear infinite;
 }
 
+/* infinite-moving-cards / spotlight keyframes — used by aceternity components */
+@keyframes scroll {
+  to { transform: translate(calc(-50% - 0.5rem)); }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+}
+
+@keyframes spotlight {
+  0%   { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* a11y: skip-to-content link */
+.skip-to-content {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border: 1px solid var(--accent-brass);
+  border-radius: 8px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  transition: top .2s ease;
+}
+.skip-to-content:focus { top: 16px; outline: none; }
+
+/* focus-visible ring (WCAG AA): every interactive */
+:where(a, button, [role="button"], input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--accent-brass);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shimmer-warm {
     animation: none;
@@ -144,6 +186,7 @@ body {
     -webkit-background-clip: text;
     color: transparent;
   }
+  .animate-scroll, .animate-spotlight { animation: none !important; }
   *, *::before, *::after {
     animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;
