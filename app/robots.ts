@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE_URL =
   process.env.GH_PAGES === "1"
     ? "https://paninbz-debug.github.io/Lumo"
