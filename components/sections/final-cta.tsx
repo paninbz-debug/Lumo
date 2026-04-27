@@ -1,10 +1,16 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import dynamic from "next/dynamic";
 import { toast } from "sonner";
 import { Reveal } from "@/components/reveal";
-import { MagneticButton } from "@/components/magnetic-button";
+import { MovingBorderButton } from "@/components/ui/moving-border";
 import { FINAL_CTA } from "@/lib/content";
+
+const BackgroundBeams = dynamic(
+  () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
+  { ssr: false }
+);
 
 export function FinalCta() {
   const [submitting, setSubmitting] = useState(false);
@@ -23,12 +29,14 @@ export function FinalCta() {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-title"
       className="relative isolate py-28 md:py-40 bg-[color:var(--bg-primary)] overflow-hidden"
     >
+      <BackgroundBeams className="opacity-50" />
       {/* metallic grain backdrop */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-grain opacity-[0.6]"
+        className="pointer-events-none absolute inset-0 bg-grain opacity-[0.6]"
       />
       <div
         aria-hidden
@@ -42,7 +50,7 @@ export function FinalCta() {
             <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
               Контакты
             </span>
-            <h2 className="mt-6 font-[family-name:var(--font-unbounded)] font-black tracking-[-0.02em] text-[clamp(38px,7vw,96px)] leading-[1.02] text-[color:var(--text-primary)]">
+            <h2 id="contact-title" className="mt-6 font-[family-name:var(--font-unbounded)] font-black tracking-[-0.02em] text-[clamp(38px,7vw,96px)] leading-[1.02] text-[color:var(--text-primary)]">
               {FINAL_CTA.title}
             </h2>
             <p className="mt-6 font-[family-name:var(--font-cormorant)] italic text-[color:var(--text-secondary)] text-[20px] md:text-[24px] leading-snug">
@@ -96,9 +104,9 @@ export function FinalCta() {
               <input name="date" type="date" required className="lumo-input" />
             </div>
             <div className="md:col-span-2 mt-4 flex flex-col items-center gap-5">
-              <MagneticButton type="submit" variant="primary">
+              <MovingBorderButton type="submit" ariaLabel={FINAL_CTA.submit}>
                 {submitting ? "Отправляем…" : FINAL_CTA.submit}
-              </MagneticButton>
+              </MovingBorderButton>
               <p className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.06em] text-[color:var(--text-muted)] max-w-[640px] text-center leading-relaxed">
                 {FINAL_CTA.formNote}
               </p>

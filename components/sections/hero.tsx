@@ -2,8 +2,15 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
 import { HERO } from "@/lib/content";
-import { MagneticButton } from "@/components/magnetic-button";
+import { MovingBorderButton } from "@/components/ui/moving-border";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+
+const BackgroundBeams = dynamic(
+  () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
+  { ssr: false }
+);
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -19,9 +26,13 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden pt-[120px] md:pt-[180px] pb-[100px] md:pb-[140px] bg-grain-soft"
+      aria-labelledby="hero-title"
+      className="relative isolate overflow-hidden pt-[120px] md:pt-[180px] pb-[100px] md:pb-[140px]"
     >
-      {/* metallic radial backdrops */}
+      {/* premium animated beams (warm-metallic, paths re-coloured) */}
+      <BackgroundBeams className="opacity-60" />
+
+      {/* warm/cool radial backdrops */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 -right-40 w-[60vw] max-w-[820px] aspect-square rounded-full opacity-[0.18] blur-3xl"
@@ -35,19 +46,25 @@ export function Hero() {
 
       <div className="container-lumo relative">
         <motion.div {...stagger(0)}>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[color:var(--border-strong)] font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-secondary)]">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[color:var(--border-strong)] font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-secondary)] backdrop-blur-sm bg-[color:var(--bg-primary)]/40">
             <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-brass)]" />
             Студия LUMO · Партнёр AuraMetal
           </span>
         </motion.div>
 
-        <motion.h1
-          {...stagger(1)}
+        <h1
+          id="hero-title"
           className="mt-7 md:mt-9 font-[family-name:var(--font-unbounded)] font-black tracking-[-0.02em] text-[clamp(40px,8vw,104px)] leading-[1.02] text-[color:var(--text-primary)] max-w-[1100px]"
         >
-          {HERO.h1Lead}{" "}
-          <span className="shimmer-warm">{HERO.h1Accent}</span>
-        </motion.h1>
+          <TextGenerateEffect
+            words={HERO.h1Lead}
+            as="span"
+            className="block"
+            duration={0.5}
+            stagger={0.06}
+          />
+          <span className="shimmer-warm block">{HERO.h1Accent}</span>
+        </h1>
 
         <motion.p
           {...stagger(2)}
@@ -58,22 +75,27 @@ export function Hero() {
 
         <motion.p
           {...stagger(3)}
-          className="mt-6 md:mt-8 text-[color:var(--text-secondary)] text-[15px] md:text-[17px] leading-relaxed max-w-[640px]"
+          className="mt-6 md:mt-8 text-[color:var(--text-secondary)] text-[16px] md:text-[17px] leading-relaxed max-w-[640px]"
         >
           {HERO.body}
         </motion.p>
 
         <motion.div
           {...stagger(4)}
-          className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4"
+          className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4"
         >
-          <MagneticButton href="#contact" variant="primary">
-            {HERO.ctaPrimary}
-            <ArrowRight size={16} />
-          </MagneticButton>
-          <MagneticButton href="#collections" variant="ghost">
+          <MovingBorderButton href="#contact" ariaLabel="Заказать выкрас">
+            <span className="inline-flex items-center gap-2">
+              {HERO.ctaPrimary}
+              <ArrowRight size={16} aria-hidden />
+            </span>
+          </MovingBorderButton>
+          <a
+            href="#collections"
+            className="inline-flex items-center justify-center px-7 py-4 rounded-full border border-[color:var(--border-strong)] text-[color:var(--text-primary)] text-[13px] font-semibold tracking-[0.06em] uppercase hover:border-[color:var(--accent-brass)] hover:text-[color:var(--accent-brass)] transition-colors min-h-[44px]"
+          >
             {HERO.ctaSecondary}
-          </MagneticButton>
+          </a>
         </motion.div>
 
         <motion.p
@@ -83,7 +105,6 @@ export function Hero() {
           {HERO.ctaCaption}
         </motion.p>
 
-        {/* numerical strip */}
         <motion.div
           {...stagger(6)}
           className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 pt-10 border-t border-[color:var(--border)]"

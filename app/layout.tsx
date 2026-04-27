@@ -68,8 +68,9 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
+          <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <Footer />
           <Toaster
             position="bottom-right"
