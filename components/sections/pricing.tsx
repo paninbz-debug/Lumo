@@ -1,36 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Reveal } from "@/components/reveal";
 import { MagneticButton } from "@/components/magnetic-button";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { PRICING } from "@/lib/content";
-
-function CountUp({ to, durationMs = 1200 }: { to: number; durationMs?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
-  const reduced = useReducedMotion();
-  const [val, setVal] = useState(reduced ? to : 0);
-
-  useEffect(() => {
-    if (!inView || reduced) {
-      if (reduced) setVal(to);
-      return;
-    }
-    let raf = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / durationMs);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setVal(Math.round(to * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, reduced, to, durationMs]);
-
-  return <span ref={ref}>{val.toLocaleString("ru-RU")}</span>;
-}
 
 export function Pricing() {
   return (
@@ -51,13 +25,15 @@ export function Pricing() {
         <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start">
           <Reveal className="md:col-span-7">
             <div className="font-[family-name:var(--font-mono)] font-light leading-[0.95] tracking-[-0.04em] text-[clamp(56px,9vw,140px)]">
-              <span className="text-gradient-warm">
-                <CountUp to={Number(PRICING.rangeFrom.replace(/\s/g, ""))} />
-              </span>
+              <NumberTicker
+                to={Number(PRICING.rangeFrom.replace(/\s/g, ""))}
+                className="text-gradient-warm"
+              />
               <span className="text-[color:var(--text-muted)]"> — </span>
-              <span className="text-gradient-warm">
-                <CountUp to={Number(PRICING.rangeTo.replace(/\s/g, ""))} />
-              </span>
+              <NumberTicker
+                to={Number(PRICING.rangeTo.replace(/\s/g, ""))}
+                className="text-gradient-warm"
+              />
             </div>
             <div className="mt-3 font-[family-name:var(--font-mono)] text-[14px] tracking-[0.06em] text-[color:var(--text-secondary)]">
               {PRICING.unit}
