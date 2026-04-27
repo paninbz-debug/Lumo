@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { TiltCard } from "@/components/ui/tilt-card";
 import { COLLECTIONS } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -38,16 +39,17 @@ export function Collections() {
             const span =
               i < 2 ? "md:col-span-3" : i < 4 ? "md:col-span-3" : "md:col-span-6";
             return (
-              <motion.article
+              <motion.div
                 key={c.id}
                 initial={reduced ? false : { opacity: 0, y: 30 }}
                 whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -80px 0px" }}
                 transition={{ duration: 0.6, delay: i * 0.06, ease }}
-                whileHover={reduced ? undefined : { y: -6 }}
+                className={cn(span)}
+              >
+              <TiltCard
                 className={cn(
-                  "group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-card)] p-7 md:p-9 min-h-[340px] md:min-h-[420px] flex flex-col",
-                  span,
+                  "group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-card)] p-7 md:p-9 min-h-[340px] md:min-h-[420px] flex flex-col h-full",
                   isWide && "md:p-12 md:min-h-[360px]"
                 )}
               >
@@ -103,11 +105,12 @@ export function Collections() {
                   <span className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.16em] uppercase text-[color:var(--text-secondary)] group-hover:text-[color:var(--accent-brass)] transition-colors">
                     Запросить образец A4
                   </span>
-                  <span className="w-9 h-9 rounded-full border border-[color:var(--border-strong)] flex items-center justify-center text-[color:var(--text-secondary)] group-hover:text-[color:var(--accent-brass)] group-hover:border-[color:var(--accent-brass)] transition-colors">
+                  <span aria-hidden className="w-9 h-9 rounded-full border border-[color:var(--border-strong)] flex items-center justify-center text-[color:var(--text-secondary)] group-hover:text-[color:var(--accent-brass)] group-hover:border-[color:var(--accent-brass)] transition-colors">
                     <ArrowUpRight size={14} />
                   </span>
                 </div>
-              </motion.article>
+              </TiltCard>
+              </motion.div>
             );
           })}
         </div>
