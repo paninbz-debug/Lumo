@@ -1,4 +1,11 @@
-export const CONTACTS_PAGE = {
+type Channel = { kind: string; label: string; url?: string; todo?: boolean };
+
+export const CONTACTS_PAGE: {
+  hero: { label: string; title: string; lead: string };
+  showroom: { address: string; addressTodo: boolean; hours: string; metro: string };
+  channels: Channel[];
+  formNote: string;
+} = {
   hero: {
     label: "Контакты",
     title: "Москва, по предварительной записи",
@@ -22,4 +29,4 @@ export const CONTACTS_PAGE = {
 
   formNote:
     "Менеджер ответит за 1 час в рабочее время. Если пропадаем дольше суток — компенсация 5 % стоимости. Так работаем.",
-} as const;
+};
