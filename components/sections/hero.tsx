@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { HERO } from "@/lib/content";
 import { MovingBorderButton } from "@/components/ui/moving-border";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const BackgroundBeams = dynamic(
   () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
@@ -52,19 +51,14 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1
+        <motion.h1
           id="hero-title"
+          {...stagger(1)}
           className="mt-7 md:mt-9 font-[family-name:var(--font-unbounded)] font-black tracking-[-0.02em] text-[clamp(40px,8vw,104px)] leading-[1.02] text-[color:var(--text-primary)] max-w-[1100px]"
         >
-          <TextGenerateEffect
-            words={HERO.h1Lead}
-            as="span"
-            className="block"
-            duration={0.5}
-            stagger={0.06}
-          />
+          <span className="block">{HERO.h1Lead}</span>
           <span className="shimmer-warm block">{HERO.h1Accent}</span>
-        </h1>
+        </motion.h1>
 
         <motion.p
           {...stagger(2)}

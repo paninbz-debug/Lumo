@@ -3,11 +3,12 @@ import { MANIFEST } from "@/lib/content";
 
 export function Manifest() {
   return (
-    <section id="manifest" className="relative py-28 md:py-40">
+    <section id="manifest" aria-labelledby="manifest-title" className="relative py-28 md:py-40">
       <div className="container-lumo">
+        <h2 id="manifest-title" className="sr-only">Манифест</h2>
         <Reveal>
           <div className="text-center max-w-[920px] mx-auto">
-            <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+            <span aria-hidden className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
               Манифест
             </span>
             <blockquote className="mt-8 font-[family-name:var(--font-cormorant)] italic font-light text-[color:var(--text-primary)] leading-[1.1] text-[clamp(34px,5.4vw,72px)]">
