@@ -20,6 +20,7 @@ import {
 } from "@/lib/copy/external-photos";
 import { DRAFT_MODE } from "@/lib/copy/draft-mode";
 import { draftRobots } from "@/lib/seo";
+import { withBase } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
   title: "Атрибуция фото | LUMO",
@@ -33,7 +34,7 @@ function PhotoRow({ src, caption, right }: { src: string; caption: string; right
   return (
     <li className="grid grid-cols-12 gap-4 items-center py-4 border-b border-[color:var(--border)] last:border-0">
       <div className="col-span-3 md:col-span-2 relative aspect-[4/3] rounded-md overflow-hidden border border-[color:var(--border)]">
-        <Image src={src} alt={caption} fill sizes="120px" className="object-cover" />
+        <Image src={withBase(src)} alt={caption} fill sizes="120px" className="object-cover" />
       </div>
       <div className="col-span-9 md:col-span-7 text-[13.5px] text-[color:var(--text-secondary)] leading-snug">
         <div className="text-[color:var(--text-primary)]">{caption}</div>
