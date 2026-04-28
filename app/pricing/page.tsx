@@ -6,6 +6,8 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/reveal";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { PRICING_PAGE } from "@/lib/copy/pricing";
+import { PRICING_BREAKDOWN, PRICE_CHART_DATA } from "@/lib/copy/pricing-extras";
+import { PriceChart } from "@/components/ui/price-chart";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -42,6 +44,81 @@ export default function PricingPage() {
             {PRICING_PAGE.hero.unit}
           </div>
         </Reveal>
+      </section>
+
+      {/* Cost breakdown 50/30/15/5 — plain language */}
+      <section className="py-20 md:py-28">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="max-w-[820px]">
+              <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                {PRICING_BREAKDOWN.label}
+              </span>
+              <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-bold tracking-[-0.02em] text-[clamp(28px,4vw,52px)] leading-[1.05] text-[color:var(--text-primary)]">
+                {PRICING_BREAKDOWN.title}
+              </h2>
+              <p className="mt-6 text-[15px] md:text-[17px] leading-relaxed text-[color:var(--text-secondary)] max-w-[680px]">
+                {PRICING_BREAKDOWN.intro}
+              </p>
+            </div>
+          </Reveal>
+
+          {/* visual stacked bar */}
+          <Reveal>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+              {PRICING_BREAKDOWN.parts.map((p, i) => (
+                <div
+                  key={p.title}
+                  className="rounded-2xl border border-[color:var(--border-strong)] bg-[color:var(--bg-card)] p-6 md:p-7"
+                  style={{ gridColumn: `span ${Math.max(2, Math.round(p.pct / 100 * 12))} / span ${Math.max(2, Math.round(p.pct / 100 * 12))}` }}
+                >
+                  <div className="font-[family-name:var(--font-mono)] text-gradient-warm text-[36px] md:text-[44px] leading-none">
+                    {p.pct}<span className="text-[24px] md:text-[28px] text-[color:var(--text-muted)] font-normal">%</span>
+                  </div>
+                  <h3 className="mt-4 font-[family-name:var(--font-unbounded)] font-medium text-[18px] md:text-[20px] text-[color:var(--text-primary)]">
+                    {p.title}
+                  </h3>
+                  <p className="mt-3 text-[13.5px] leading-relaxed text-[color:var(--text-secondary)]">
+                    {p.body}
+                  </p>
+                  <div className="mt-5 h-1 rounded-full bg-[color:var(--bg-elevated)] overflow-hidden">
+                    <span className="block h-full bg-gradient-warm" style={{ width: `${p.pct}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <p className="mt-10 max-w-[760px] font-[family-name:var(--font-cormorant)] italic text-[18px] md:text-[20px] leading-snug text-[color:var(--text-secondary)]">
+              В сумме — стоимость, которую можно передать через десять лет следующему владельцу квартиры как мебель.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Visual price chart — log scale */}
+      <section className="py-20 md:py-28 bg-[color:var(--bg-elevated)]">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="max-w-[820px]">
+              <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                Сравнительная картина
+              </span>
+              <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-bold tracking-[-0.02em] text-[clamp(28px,4vw,52px)] leading-[1.05] text-[color:var(--text-primary)]">
+                Цена и срок службы — на одной шкале
+              </h2>
+              <p className="mt-6 text-[15px] md:text-[16px] leading-relaxed text-[color:var(--text-secondary)] max-w-[640px]">
+                Логарифмическая шкала цен от 700 ₽ до 100 000 ₽/м². Точка справа на каждой полосе — срок службы в годах.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="mt-12">
+              <PriceChart rows={[...PRICE_CHART_DATA]} />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* Factors */}
