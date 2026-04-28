@@ -29,6 +29,10 @@ export const COLLECTION_PHOTOS: PhotoSet = {
     { src: "/photos/collections/deep-mirror/dm_06.jpg", caption: "Зеркальная стена, мастер-санузел", unsplashId: "1757377125373-26d255339ced" },
     { src: "/photos/collections/deep-mirror/dm_07.jpg", caption: "Скульптурная вставка, шоурум", unsplashId: "1624007666785-8cccc435557e" },
     { src: "/photos/collections/deep-mirror/dm_08.jpg", caption: "Дверь-портал, частный особняк", unsplashId: "1718545776878-73100a700f44" },
+    { src: "/photos/collections/deep-mirror/dm-extra_01.jpg", caption: "Полированный объём, бронзовая скульптура", unsplashId: "1606407940022-45533fea3f" },
+    { src: "/photos/collections/deep-mirror/dm-extra_02.jpg", caption: "Зеркальный мебельный портал", unsplashId: "1702314876402-8f64d97030" },
+    { src: "/photos/collections/deep-mirror/dm-extra_03.jpg", caption: "Фрагмент полировки до P2000", unsplashId: "1628681464827-b672d207bd" },
+    { src: "/photos/collections/deep-mirror/dm-extra_04.jpg", caption: "Изгиб полированного объёма", unsplashId: "1606407940763-8e752f5879" },
   ],
   "aged-patina": [
     { src: "/photos/collections/aged-patina/ap_01.jpg", caption: "Камерная гостиная, медная стена 24 м²", unsplashId: "1764983266623-364aa9edad95" },
@@ -49,6 +53,10 @@ export const COLLECTION_PHOTOS: PhotoSet = {
     { src: "/photos/collections/brushed-daylight/bd_06.jpg", caption: "Архитектурный потолок, спортзал", unsplashId: "1633309340199-98d11f5c4e71" },
     { src: "/photos/collections/brushed-daylight/bd_07.jpg", caption: "Двери в гардеробной", unsplashId: "1572033841928-aa79aeee2316" },
     { src: "/photos/collections/brushed-daylight/bd_08.jpg", caption: "Стол-остров на кухне", unsplashId: "1572284950175-7119b9429464" },
+    { src: "/photos/collections/brushed-daylight/bd-extra_01.jpg", caption: "Anodized-финиш фасада, скандинавский минимализм", unsplashId: "1591361802285-7e4678e537" },
+    { src: "/photos/collections/brushed-daylight/bd-extra_02.jpg", caption: "Алюминиевая поверхность в скользящем свете", unsplashId: "1503233324503-20adf3c8a4" },
+    { src: "/photos/collections/brushed-daylight/bd-extra_03.jpg", caption: "Брашированный никель, деталь", unsplashId: "1684483165545-baaa4d88f9" },
+    { src: "/photos/collections/brushed-daylight/bd-extra_04.jpg", caption: "Архитектурный фасад с однонаправленной штриховкой", unsplashId: "1595786229272-e9a02a3309" },
   ],
   "liquid-mercury": [
     { src: "/photos/collections/liquid-mercury/lm_01.jpg", caption: "Скульптурная инсталляция, ритейл-зона", unsplashId: "1684025349621-1e5fc8816cc1" },
@@ -59,6 +67,8 @@ export const COLLECTION_PHOTOS: PhotoSet = {
     { src: "/photos/collections/liquid-mercury/lm_06.jpg", caption: "Скульптурный объект «Cloud»", unsplashId: "1764505879000-e75c1249285e" },
     { src: "/photos/collections/liquid-mercury/lm_07.jpg", caption: "Витринная сцена, ритейл премиум", unsplashId: "1744997553871-f01c475570a7" },
     { src: "/photos/collections/liquid-mercury/lm_08.jpg", caption: "Архитектурный портал, лобби", unsplashId: "1605643556957-0c8edc5bb03c" },
+    { src: "/photos/collections/liquid-mercury/lm-extra_01.jpg", caption: "Хромированный отражающий объём", unsplashId: "1773574060837-1a7a9c1dfe" },
+    { src: "/photos/collections/liquid-mercury/lm-extra_02.jpg", caption: "Сюрреалистическая зеркальная сфера", unsplashId: "1765118489122-6705b7c9f7" },
   ],
   "copper-fire": [
     { src: "/photos/collections/copper-fire/cf_01.jpg", caption: "Каминный портал, гостиная", unsplashId: "1603364579808-49a50ff42ea2" },
@@ -69,6 +79,10 @@ export const COLLECTION_PHOTOS: PhotoSet = {
     { src: "/photos/collections/copper-fire/cf_06.jpg", caption: "Колонна, ресторан гранд-стиля", unsplashId: "1655917080884-538d83e1de11" },
     { src: "/photos/collections/copper-fire/cf_07.jpg", caption: "Дверь-портал в кабинет", unsplashId: "1773215665369-e80b4ae00ebe" },
     { src: "/photos/collections/copper-fire/cf_08.jpg", caption: "Декоративная вставка, медиа-зона", unsplashId: "1566335627875-a4dda3706486" },
+    { src: "/photos/collections/copper-fire/cf-extra_01.jpg", caption: "Медный fond с тёплым свечением", unsplashId: "1764253414255-2f5b3511a0" },
+    { src: "/photos/collections/copper-fire/cf-extra_02.jpg", caption: "Полированная медь, янтарный регистр", unsplashId: "1773067752070-e1d3923caf" },
+    { src: "/photos/collections/copper-fire/cf-extra_03.jpg", caption: "Медь под мягким архитектурным светом", unsplashId: "1766591463271-f8103f1b77" },
+    { src: "/photos/collections/copper-fire/cf-extra_04.jpg", caption: "Медный portal с бликами", unsplashId: "1557298935-e8f14e8e3a1f" },
   ],
 };
 
@@ -80,6 +94,9 @@ export const APPLICATION_PHOTOS: PhotoSet = {
     { src: "/photos/applications/walls/walls_03.jpg", caption: "Стена за ТВ-зоной", unsplashId: "1646592474167-16137d4da628" },
     { src: "/photos/applications/walls/walls_04.jpg", caption: "Стена в премиум-апартаментах", unsplashId: "1758972581344-85dd3ccb10db" },
     { src: "/photos/applications/walls/walls_05.jpg", caption: "Стена-портал у изголовья", unsplashId: "1615971677499-5467cbab01c0" },
+    { src: "/photos/applications/walls/walls-extra_01.jpg", caption: "Парадный холл с акцентной стеной", unsplashId: "1708107243243-557a2cad3c" },
+    { src: "/photos/applications/walls/walls-extra_02.jpg", caption: "Лифтовой холл премиум-объекта", unsplashId: "1610477633852-109ff3106e" },
+    { src: "/photos/applications/walls/walls-extra_03.jpg", caption: "Парадный портал между зон", unsplashId: "1610477633837-3405a17ee5" },
   ],
   "furniture-mdf": [
     { src: "/photos/applications/furniture-mdf/furn_01.jpg", caption: "Премиум-серия мебельных фасадов", unsplashId: "1742731829910-1d5e02be7481" },
@@ -94,6 +111,9 @@ export const APPLICATION_PHOTOS: PhotoSet = {
     { src: "/photos/applications/kitchens/kit_03.jpg", caption: "Кухонный остров с MDF", unsplashId: "1769326541248-5e09a8ace25b" },
     { src: "/photos/applications/kitchens/kit_04.jpg", caption: "Открытая кухня в лофте", unsplashId: "1769326541179-1c496f7c5104" },
     { src: "/photos/applications/kitchens/kit_05.jpg", caption: "Кухня-бистро, нержавейка", unsplashId: "1769326541210-86e9d3204496" },
+    { src: "/photos/applications/kitchens/kit-extra_01.jpg", caption: "Металлический фартук в кухне", unsplashId: "1723810733743-2b95373cc5" },
+    { src: "/photos/applications/kitchens/kit-extra_02.jpg", caption: "Кухня с латунным акцентом", unsplashId: "1698653222124-063435c87e" },
+    { src: "/photos/applications/kitchens/kit-extra_03.jpg", caption: "Кухонный остров с металлическим финишем", unsplashId: "1721201338236-ea96d48be1" },
   ],
   bathrooms: [
     { src: "/photos/applications/bathrooms/bath_01.jpg", caption: "Стена за умывальником", unsplashId: "1749766878223-6ceae855b28b" },
@@ -108,6 +128,9 @@ export const APPLICATION_PHOTOS: PhotoSet = {
     { src: "/photos/applications/horeca/hor_03.jpg", caption: "Парадный ресепшен ресторана", unsplashId: "1775342885658-1fe496d294a3" },
     { src: "/photos/applications/horeca/hor_04.jpg", caption: "Винный погреб, патина", unsplashId: "1761085590866-e94c99818636" },
     { src: "/photos/applications/horeca/hor_05.jpg", caption: "Спа-зона спа-отеля", unsplashId: "1759038086995-fb21d7c4dc56" },
+    { src: "/photos/applications/horeca/hor-extra_01.jpg", caption: "Бар-стойка отеля с тёплым подсветом", unsplashId: "1723465302725-ff46b3e165" },
+    { src: "/photos/applications/horeca/hor-extra_02.jpg", caption: "Парадный ресепшен бутик-отеля", unsplashId: "1744782996368-dc5b7e697f" },
+    { src: "/photos/applications/horeca/hor-extra_03.jpg", caption: "Винный бар с латунными элементами", unsplashId: "1674654658736-bbede04981" },
   ],
   facades: [
     { src: "/photos/applications/facades/fac_01.jpg", caption: "Архитектурный фасад премиум-объекта", unsplashId: "1695809584503-69ee6dd2b7fb" },
