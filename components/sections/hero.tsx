@@ -5,7 +5,11 @@ import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { HERO } from "@/lib/content";
 import { MovingBorderButton } from "@/components/ui/moving-border";
-import { AnimatedMesh } from "@/components/ui/animated-mesh";
+
+const AnimatedMesh = dynamic(
+  () => import("@/components/ui/animated-mesh").then((m) => m.AnimatedMesh),
+  { ssr: false }
+);
 
 const BackgroundBeams = dynamic(
   () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
