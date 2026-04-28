@@ -3,8 +3,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { HERO } from "@/lib/content";
 import { MovingBorderButton } from "@/components/ui/moving-border";
+import { HERO_PHOTO } from "@/lib/copy/photos";
 
 const AnimatedMesh = dynamic(
   () => import("@/components/ui/animated-mesh").then((m) => m.AnimatedMesh),
@@ -33,11 +35,24 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="relative isolate overflow-hidden pt-[120px] md:pt-[180px] pb-[100px] md:pb-[140px]"
     >
+      {/* hero photo — temporary Unsplash, see /credits */}
+      <div aria-hidden className="absolute inset-0 -z-30 overflow-hidden">
+        <Image
+          src={HERO_PHOTO.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-[0.28]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--bg-primary)]/90 via-[color:var(--bg-primary)]/70 to-[color:var(--bg-primary)]" />
+      </div>
+
       {/* animated metallic mesh — Phase 2.5 visual layer */}
-      <AnimatedMesh className="-z-10" />
+      <AnimatedMesh className="-z-10" intensity="soft" />
 
       {/* premium animated beams (warm-metallic, paths re-coloured) */}
-      <BackgroundBeams className="opacity-40" />
+      <BackgroundBeams className="opacity-30" />
 
       {/* warm/cool radial backdrops */}
       <div
