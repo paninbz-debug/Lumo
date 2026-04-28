@@ -24,8 +24,11 @@ export function MetalSamples() {
 
         <ul className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {MATERIAL_METALS.map((m, i) => (
-            <Reveal key={m.id} delay={i * 0.04}>
-              <li className="placeholder-grain group relative aspect-square rounded-2xl border border-[color:var(--border-strong)] overflow-hidden" style={{ background: m.gradient }}>
+            <li
+              key={m.id}
+              className="placeholder-grain group relative aspect-square rounded-2xl border border-[color:var(--border-strong)] overflow-hidden"
+              style={{ background: m.gradient, animationDelay: `${i * 0.04}s` }}
+            >
                 {/* default state */}
                 <div className="absolute inset-0 p-5 flex flex-col justify-end transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
                   <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-white/85">
@@ -58,8 +61,7 @@ export function MetalSamples() {
                   className="absolute inset-0 outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent-brass)]"
                   aria-label={`${m.name}: ${m.epithets}`}
                 />
-              </li>
-            </Reveal>
+            </li>
           ))}
         </ul>
       </div>
