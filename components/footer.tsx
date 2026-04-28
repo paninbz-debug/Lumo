@@ -92,9 +92,19 @@ export function Footer() {
       </div>
 
       <div className="border-t border-[color:var(--border)]">
-        <div className="container-lumo py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.05em] text-[color:var(--text-muted)]">
-          <span>{FOOTER.legal}</span>
-          <span>Phase 1 · Homepage · v0.1.0</span>
+        <div className="container-lumo py-6 grid grid-cols-1 md:grid-cols-12 gap-3 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.05em] text-[color:var(--text-muted)]">
+          <div className="md:col-span-8 leading-relaxed">
+            Фото на сайте — временные иллюстрации (Unsplash, free for commercial use). Объекты на&nbsp;кадрах не выполнены студией LUMO. После собственной фотосессии заменим.{" "}
+            <Link
+              href="/credits"
+              className="underline decoration-dotted underline-offset-4 hover:text-[color:var(--accent-brass)] transition-colors"
+            >
+              Атрибуция и&nbsp;источники
+            </Link>
+          </div>
+          <div className="md:col-span-4 md:text-right">
+            <span className="block">{FOOTER.legal}</span>
+          </div>
         </div>
       </div>
     </footer>
