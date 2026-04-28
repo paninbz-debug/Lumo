@@ -2,10 +2,10 @@
 
 import { useState, type FormEvent } from "react";
 import dynamic from "next/dynamic";
-import { toast } from "sonner";
 import { Reveal } from "@/components/reveal";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { FINAL_CTA } from "@/lib/content";
+import { submitLead } from "@/lib/submit-lead";
 
 const BackgroundBeams = dynamic(
   () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
@@ -15,15 +15,11 @@ const BackgroundBeams = dynamic(
 export function FinalCta() {
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    // TODO Phase 2: POST → /api/lead → Resend + Telegram bot
-    setTimeout(() => {
-      toast.success("Заявка принята. Менеджер ответит за 1 час в рабочее время.");
-      (e.target as HTMLFormElement).reset();
-      setSubmitting(false);
-    }, 600);
+    await submitLead(e.currentTarget, "home-final-cta");
+    setSubmitting(false);
   };
 
   return (

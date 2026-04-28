@@ -2,27 +2,23 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
-import { toast } from "sonner";
 import { FileText, FolderKanban, Percent, ShieldCheck, Clock, Eye } from "lucide-react";
 import { PageHero } from "@/components/sections/page-hero";
 import { Reveal } from "@/components/reveal";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { TRADE_PAGE } from "@/lib/copy/trade";
+import { submitLead } from "@/lib/submit-lead";
 
 const ICONS = [FileText, FolderKanban, Percent, ShieldCheck, Clock, Eye] as const;
 
 export default function TradePage() {
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    // TODO Phase 3: POST → /api/trade/apply → Resend + Telegram + Slack
-    setTimeout(() => {
-      toast.success("Заявка принята. Свяжемся в течение двух недель.");
-      (e.target as HTMLFormElement).reset();
-      setSubmitting(false);
-    }, 600);
+    await submitLead(e.currentTarget, "trade");
+    setSubmitting(false);
   };
 
   return (
@@ -127,11 +123,11 @@ export default function TradePage() {
             </div>
             <div>
               <label htmlFor="trade-years" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">{TRADE_PAGE.formFields.yearsInTrade}</label>
-              <input id="trade-years" name="years" type="number" min={0} step={1} className="lumo-input" />
+              <input id="trade-years" name="yearsInTrade" type="number" min={0} step={1} className="lumo-input" />
             </div>
             <div>
               <label htmlFor="trade-objects" className="block mb-2 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-[color:var(--text-muted)]">{TRADE_PAGE.formFields.objectsPerYear}</label>
-              <input id="trade-objects" name="objects" type="number" min={0} step={1} className="lumo-input" />
+              <input id="trade-objects" name="objectsPerYear" type="number" min={0} step={1} className="lumo-input" />
             </div>
             <div className="md:col-span-2 mt-4 flex flex-col items-center gap-5">
               <MovingBorderButton type="submit" ariaLabel={TRADE_PAGE.formFields.submit}>
