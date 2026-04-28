@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   basePath: isPages ? "/Lumo" : undefined,
   trailingSlash: isPages || undefined,
   images: { unoptimized: true },
+  // expose to client bundle so lib/asset-path.ts can prefix /photos/* manually
+  // (Next 16 + images.unoptimized:true does NOT auto-prefix <Image src="/foo.jpg">).
+  env: { NEXT_PUBLIC_BASE_PATH: isPages ? "/Lumo" : "" },
 };
 
 export default nextConfig;

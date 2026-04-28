@@ -7,6 +7,7 @@ import Image from "next/image";
 import { HERO } from "@/lib/content";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { HERO_PHOTO } from "@/lib/copy/photos";
+import { withBase } from "@/lib/asset-path";
 
 const AnimatedMesh = dynamic(
   () => import("@/components/ui/animated-mesh").then((m) => m.AnimatedMesh),
@@ -38,12 +39,12 @@ export function Hero() {
       {/* hero photo — temporary Unsplash, see /credits */}
       <div aria-hidden className="absolute inset-0 -z-30 overflow-hidden">
         <Image
-          src={HERO_PHOTO.src}
+          src={withBase(HERO_PHOTO.src)}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-[0.28]"
+          className="object-cover opacity-[0.55]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--bg-primary)]/90 via-[color:var(--bg-primary)]/70 to-[color:var(--bg-primary)]" />
       </div>

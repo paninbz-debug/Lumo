@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBase } from "@/lib/asset-path";
 
 export type LightboxItem = {
   /** Real image src (preferred — uses next/image). Optional. */
@@ -81,7 +82,7 @@ export function ImageLightboxGallery({
               >
                 {it.image && (
                   <Image
-                    src={it.image}
+                    src={withBase(it.image)}
                     alt={it.caption}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
@@ -156,7 +157,7 @@ export function ImageLightboxGallery({
               >
                 {items[index].image && (
                   <Image
-                    src={items[index].image as string}
+                    src={withBase(items[index].image as string)}
                     alt={items[index].caption}
                     fill
                     sizes="100vw"

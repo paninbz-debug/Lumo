@@ -7,6 +7,7 @@ import { FactsGrid } from "@/components/sections/facts-grid";
 import { Reveal } from "@/components/reveal";
 import { CRAFT_PAGE } from "@/lib/copy/craft";
 import { CRAFT_PHOTOS } from "@/lib/copy/photos";
+import { withBase } from "@/lib/asset-path";
 import { GlossaryTip } from "@/components/ui/glossary";
 import { GLOSSARY } from "@/lib/copy/glossary";
 import { draftRobots } from "@/lib/seo";
@@ -64,7 +65,7 @@ export default function CraftPage() {
               {CRAFT_PHOTOS.map((p, i) => (
                 <li key={p.caption} className="relative aspect-[4/5] rounded-xl border border-[color:var(--border)] overflow-hidden bg-[color:var(--bg-card)]">
                   <Image
-                    src={p.src}
+                    src={withBase(p.src)}
                     alt={p.caption}
                     fill
                     sizes="(max-width: 768px) 50vw, 20vw"
