@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { HERO } from "@/lib/content";
 import { MovingBorderButton } from "@/components/ui/moving-border";
+import { AnimatedMesh } from "@/components/ui/animated-mesh";
 
 const BackgroundBeams = dynamic(
   () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
@@ -28,8 +29,11 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="relative isolate overflow-hidden pt-[120px] md:pt-[180px] pb-[100px] md:pb-[140px]"
     >
+      {/* animated metallic mesh — Phase 2.5 visual layer */}
+      <AnimatedMesh className="-z-10" />
+
       {/* premium animated beams (warm-metallic, paths re-coloured) */}
-      <BackgroundBeams className="opacity-60" />
+      <BackgroundBeams className="opacity-40" />
 
       {/* warm/cool radial backdrops */}
       <div
@@ -69,7 +73,14 @@ export function Hero() {
 
         <motion.p
           {...stagger(3)}
-          className="mt-6 md:mt-8 text-[color:var(--text-secondary)] text-[16px] md:text-[17px] leading-relaxed max-w-[640px]"
+          className="mt-6 md:mt-8 text-[color:var(--text-primary)] text-[17px] md:text-[19px] leading-relaxed max-w-[760px]"
+        >
+          Премиальное покрытие для стен, фасадов и мебели — настоящий металл (медь, латунь, бронза, никель, алюминий) в&nbsp;жидкой форме. Без швов, без пластика, без масс-производства. На&nbsp;десятилетия.
+        </motion.p>
+
+        <motion.p
+          {...stagger(4)}
+          className="mt-4 text-[color:var(--text-secondary)] text-[15px] md:text-[16px] leading-relaxed max-w-[640px]"
         >
           {HERO.body}
         </motion.p>
