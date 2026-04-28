@@ -1,0 +1,4 @@
+# Place manually-saved reference photos from verometal here.
+# After save:
+#   1. magick "<file>" -strip -auto-orient -quality 82 -resize "1600x1600>" "<file>"
+#   2. Add an entry in lib/copy/external-photos.ts → EXTERNAL_PHOTOS
