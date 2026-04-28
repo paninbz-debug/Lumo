@@ -4,11 +4,13 @@ import { PageHero } from "@/components/sections/page-hero";
 import { PageCta } from "@/components/sections/page-cta";
 import { Reveal } from "@/components/reveal";
 import { JOURNAL_INDEX, JOURNAL_ARTICLES } from "@/lib/copy/journal";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Журнал — про материал и ремесло | LUMO",
   description:
     "Разбираем жидкий металл честно: сравнения с альтернативами, ограничения, реальные сроки и реальные цены. Без эпитетов в превосходной степени.",
+  robots: draftRobots,
   alternates: { canonical: "/journal" },
 };
 

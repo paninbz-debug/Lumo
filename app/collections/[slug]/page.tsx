@@ -8,6 +8,7 @@ import { FactsGrid } from "@/components/sections/facts-grid";
 import { Reveal } from "@/components/reveal";
 import { COLLECTIONS_LIST, COLLECTIONS_INDEX, getCollection } from "@/lib/copy/collections";
 import { COLLECTION_PHOTOS } from "@/lib/copy/photos";
+import { externalForCollection, BRAND_INFO } from "@/lib/copy/external-photos";
 import { ImageLightboxGallery, type LightboxItem } from "@/components/ui/image-lightbox";
 import { cn } from "@/lib/utils";
 
@@ -196,12 +197,19 @@ export default async function CollectionPage({
           </Reveal>
           <Reveal>
             <ImageLightboxGallery
-              items={COLLECTION_PHOTOS[c.id].map<LightboxItem>((p) => ({
-                image: p.src,
-                caption: p.caption,
-              }))}
+              items={[
+                // Brand references first (if Danil added any), Unsplash после
+                ...externalForCollection(c.id).map<LightboxItem>((p) => ({
+                  image: p.src,
+                  caption: `${p.caption} · ${BRAND_INFO[p.brand].name}`,
+                })),
+                ...COLLECTION_PHOTOS[c.id].map<LightboxItem>((p) => ({
+                  image: p.src,
+                  caption: p.caption,
+                })),
+              ]}
               aspect="4/5"
-              placeholderHint="Фото на странице — временные, использованы для иллюстрации стилистики (Unsplash). После собственной фотосессии LUMO заменим. См. /credits."
+              placeholderHint="Фото на странице — временные (Unsplash + brand-references для personal review). После собственной фотосессии LUMO заменим. См. /credits."
             />
           </Reveal>
         </div>

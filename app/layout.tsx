@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { DraftBanner } from "@/components/draft-banner";
+import { DRAFT_MODE } from "@/lib/copy/draft-mode";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -87,7 +89,11 @@ export const metadata: Metadata = {
       "/api/og?title=Жидкий металл, нанесённый как ремесло&subtitle=Разница не в банке. Разница в руках.",
     ],
   },
-  robots: { index: true, follow: true },
+  // Phase 3.6 — пока DRAFT_MODE включён, ничего не индексируем.
+  // После своей фотосессии и снятия флага вернётся {index:true, follow:true}.
+  robots: DRAFT_MODE
+    ? { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } }
+    : { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -99,9 +105,17 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${unbounded.variable} ${cormorant.variable} ${inter.variable} ${mono.variable}`}
     >
+      {DRAFT_MODE && (
+        <head>
+          {/* Global noindex while DRAFT_MODE — applies to every route regardless
+             of its own metadata.robots override. */}
+          <meta name="robots" content="noindex, nofollow, nocache, noarchive" />
+        </head>
+      )}
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
+          <DraftBanner />
           <Header />
           <main id="main-content" className="flex-1">{children}</main>
           <Footer />

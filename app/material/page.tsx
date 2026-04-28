@@ -7,11 +7,13 @@ import { Reveal } from "@/components/reveal";
 import { GlossaryTip } from "@/components/ui/glossary";
 import { GLOSSARY } from "@/lib/copy/glossary";
 import { MATERIAL } from "@/lib/copy/material";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Материал — жидкий металл AuraMetal | LUMO",
   description:
     "Двухкомпонентная система жидкого металла AuraMetal: 11 артикулов металлов, толщина слоя 300–800 микрон, расход 300–400 мл/м². Партия под весь объект, паспорт партии, сертификат подлинности.",
+  robots: draftRobots,
   alternates: { canonical: "/material" },
 };
 

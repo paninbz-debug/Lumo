@@ -9,11 +9,13 @@ import { PRICING_PAGE } from "@/lib/copy/pricing";
 import { PRICING_BREAKDOWN, PRICE_CHART_DATA } from "@/lib/copy/pricing-extras";
 import { PriceChart } from "@/components/ui/price-chart";
 import { cn } from "@/lib/utils";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Цена — 25 000–55 000 ₽/м² | LUMO",
   description:
     "Открытая вилка цены: 25 000–55 000 ₽ за м² жидкого металла под ключ в Москве. В смете отдельно: материал, грунт, работа, лак. Сравнение с альтернативами и 10 ответов на частые вопросы.",
+  robots: draftRobots,
   alternates: { canonical: "/pricing" },
 };
 

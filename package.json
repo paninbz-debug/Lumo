@@ -6,7 +6,8 @@
     "dev": "next dev -H 0.0.0.0 -p 3300",
     "build": "next build",
     "start": "next start -p 3300",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check-draft": "node -e \"const v=require('fs').readFileSync('lib/copy/draft-mode.ts','utf8');if(!v.includes('DRAFT_MODE = true')){console.log('OK — DRAFT_MODE=false (live)');process.exit(0)};console.warn('\\\\n⚠  LUMO is in DRAFT_MODE — robots noindex active, do not promote publicly.\\\\n   Toggle lib/copy/draft-mode.ts after own photoshoot.\\\\n');\""
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

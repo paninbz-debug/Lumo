@@ -9,11 +9,13 @@ import { CRAFT_PAGE } from "@/lib/copy/craft";
 import { CRAFT_PHOTOS } from "@/lib/copy/photos";
 import { GlossaryTip } from "@/components/ui/glossary";
 import { GLOSSARY } from "@/lib/copy/glossary";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Ремесло — пять самостоятельных ремёсел | LUMO",
   description:
     "Подготовка, нанесение, шлифовка, полировка, защита. От DTM-праймера до полисилазана 9H+ — каждый этап ведёт отдельный мастер AuraMetal Academy.",
+  robots: draftRobots,
   alternates: { canonical: "/craft" },
 };
 
