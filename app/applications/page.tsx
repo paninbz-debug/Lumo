@@ -5,11 +5,13 @@ import { PageHero } from "@/components/sections/page-hero";
 import { PageCta } from "@/components/sections/page-cta";
 import { Reveal } from "@/components/reveal";
 import { APPLICATIONS_INDEX, APPLICATIONS_LIST } from "@/lib/copy/applications";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Применения — где живёт жидкий металл | LUMO",
   description:
     "Шесть типов объектов: стены, мебель и MDF-фасады, кухни, ванные, HoReCa и фасады. У каждого свои зоны риска, своя подготовка и допустимые коллекции.",
+  robots: draftRobots,
   alternates: { canonical: "/applications" },
 };
 

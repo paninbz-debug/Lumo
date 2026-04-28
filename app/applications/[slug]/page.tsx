@@ -10,6 +10,7 @@ import { APPLICATIONS_LIST, getApplication, type ApplicationId } from "@/lib/cop
 import { getCollection } from "@/lib/copy/collections";
 import { APPLICATION_BEFOREAFTER } from "@/lib/copy/visuals";
 import { APPLICATION_PHOTOS } from "@/lib/copy/photos";
+import { externalForApplication, BRAND_INFO } from "@/lib/copy/external-photos";
 import { FITS_YOU, PREP_CHECKLIST } from "@/lib/copy/applications-extras";
 import { BeforeAfter } from "@/components/ui/before-after";
 import { ImageLightboxGallery, type LightboxItem } from "@/components/ui/image-lightbox";
@@ -230,10 +231,16 @@ export default async function ApplicationPage({
           </Reveal>
           <Reveal>
             <ImageLightboxGallery
-              items={(APPLICATION_PHOTOS[a.id] ?? []).map<LightboxItem>((p) => ({
-                image: p.src,
-                caption: p.caption,
-              }))}
+              items={[
+                ...externalForApplication(a.id as ApplicationId).map<LightboxItem>((p) => ({
+                  image: p.src,
+                  caption: `${p.caption} · ${BRAND_INFO[p.brand].name}`,
+                })),
+                ...(APPLICATION_PHOTOS[a.id] ?? []).map<LightboxItem>((p) => ({
+                  image: p.src,
+                  caption: p.caption,
+                })),
+              ]}
               aspect="4/5"
             />
           </Reveal>

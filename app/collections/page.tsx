@@ -6,11 +6,13 @@ import { PageCta } from "@/components/sections/page-cta";
 import { Reveal } from "@/components/reveal";
 import { COLLECTIONS_INDEX, COLLECTIONS_LIST } from "@/lib/copy/collections";
 import { cn } from "@/lib/utils";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Коллекции — пять характеров одного материала | LUMO",
   description:
     "Пять коллекций финишей жидкого металла: Deep Mirror (зеркало), Aged Patina (биография), Brushed Daylight (свет), Liquid Mercury (ртуть), Copper Fire (огонь).",
+  robots: draftRobots,
   alternates: { canonical: "/collections" },
 };
 

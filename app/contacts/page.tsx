@@ -4,11 +4,13 @@ import { PageHero } from "@/components/sections/page-hero";
 import { Reveal } from "@/components/reveal";
 import { FinalCta } from "@/components/sections/final-cta";
 import { CONTACTS_PAGE } from "@/lib/copy/contacts";
+import { draftRobots } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Контакты — Москва, по предварительной записи | LUMO",
   description:
     "Шоурум в Москве по предварительной записи. WhatsApp, Telegram, e-mail. Менеджер ответит за 1 час в рабочее время.",
+  robots: draftRobots,
   alternates: { canonical: "/contacts" },
 };
 
