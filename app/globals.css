@@ -191,6 +191,63 @@ body {
   border-radius: 4px;
 }
 
+/* ============ ANIMATED METALLIC MESH ============ */
+@keyframes mesh-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-8%, 6%) scale(1.08); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes mesh-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(10%, -4%) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes mesh-drift-3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-6%, -8%) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes mesh-drift-4 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(7%, 9%) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-mesh-1 { animation: mesh-drift-1 22s ease-in-out infinite; }
+.animate-mesh-2 { animation: mesh-drift-2 28s ease-in-out infinite; }
+.animate-mesh-3 { animation: mesh-drift-3 34s ease-in-out infinite; }
+.animate-mesh-4 { animation: mesh-drift-4 26s ease-in-out infinite; }
+
+/* placeholder gradients with film-grain */
+.placeholder-grain {
+  position: relative;
+}
+.placeholder-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-repeat: repeat;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* lightbox dialog */
+dialog.lumo-lightbox {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+dialog.lumo-lightbox::backdrop {
+  background: rgba(10, 9, 8, 0.92);
+  backdrop-filter: blur(8px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shimmer-warm {
     animation: none;
@@ -199,7 +256,8 @@ body {
     -webkit-background-clip: text;
     color: transparent;
   }
-  .animate-scroll, .animate-spotlight { animation: none !important; }
+  .animate-scroll, .animate-spotlight,
+  .animate-mesh-1, .animate-mesh-2, .animate-mesh-3, .animate-mesh-4 { animation: none !important; }
   *, *::before, *::after {
     animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;

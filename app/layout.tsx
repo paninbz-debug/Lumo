@@ -6,32 +6,37 @@ import { Footer } from "@/components/footer";
 import { Toaster } from "sonner";
 import "./globals.css";
 
+// Phase 2.5 perf trim: keep only critical weights actually used in markup.
+// Unbounded — 500 (medium), 700 (bold), 900 (black) — covers H-titles + LUMO logo.
+// Cormorant — 300 italic + 400 italic — only these are referenced in JSX.
+// Inter — 400 + 600 — body + button labels.
+// JetBrains Mono — 300 + 400 — facts grid + metadata.
 const unbounded = Unbounded({
   variable: "--font-unbounded",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["500", "700", "900"],
   display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["300", "400"],
+  style: ["italic"],
   display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
   display: "swap",
 });
 
 const mono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400"],
   display: "swap",
 });
 

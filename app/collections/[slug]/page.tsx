@@ -7,6 +7,8 @@ import { PageCta } from "@/components/sections/page-cta";
 import { FactsGrid } from "@/components/sections/facts-grid";
 import { Reveal } from "@/components/reveal";
 import { COLLECTIONS_LIST, COLLECTIONS_INDEX, getCollection } from "@/lib/copy/collections";
+import { COLLECTION_GALLERY, PLACEHOLDER_HINT } from "@/lib/copy/visuals";
+import { ImageLightboxGallery } from "@/components/ui/image-lightbox";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -170,6 +172,34 @@ export default async function CollectionPage({
                 </Link>
               ))}
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="py-20 md:py-28">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+              <div>
+                <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                  Галерея
+                </span>
+                <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-bold tracking-[-0.02em] text-[clamp(26px,3.6vw,44px)] leading-[1.08] text-[color:var(--text-primary)]">
+                  {c.name} в&nbsp;интерьерах
+                </h2>
+              </div>
+              <p className="md:text-right md:max-w-[360px] text-[14px] leading-relaxed text-[color:var(--text-secondary)]">
+                Объекты подобраны с разрешения клиентов. Адреса и имена не разглашаем без отдельного согласования.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <ImageLightboxGallery
+              items={[...COLLECTION_GALLERY[c.id]]}
+              aspect="4/5"
+              placeholderHint={PLACEHOLDER_HINT}
+            />
           </Reveal>
         </div>
       </section>

@@ -6,8 +6,11 @@ import { PageHero } from "@/components/sections/page-hero";
 import { PageCta } from "@/components/sections/page-cta";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/reveal";
-import { APPLICATIONS_LIST, getApplication } from "@/lib/copy/applications";
+import { APPLICATIONS_LIST, getApplication, type ApplicationId } from "@/lib/copy/applications";
 import { getCollection } from "@/lib/copy/collections";
+import { APPLICATION_BEFOREAFTER } from "@/lib/copy/visuals";
+import { FITS_YOU, PREP_CHECKLIST } from "@/lib/copy/applications-extras";
+import { BeforeAfter } from "@/components/ui/before-after";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -41,6 +44,79 @@ export default async function ApplicationPage({
   return (
     <>
       <PageHero label={`Применение · ${a.name}`} title={a.tagline} lead={a.lead} />
+
+      {/* Before / After */}
+      <section className="py-12 md:py-16">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <div>
+                <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                  Сравнение
+                </span>
+                <h2 className="mt-4 font-[family-name:var(--font-unbounded)] font-medium text-[clamp(22px,2.8vw,32px)] leading-[1.1] text-[color:var(--text-primary)]">
+                  Было — стало
+                </h2>
+              </div>
+              <p className="text-[13px] md:text-right md:max-w-[360px] text-[color:var(--text-muted)] leading-relaxed">
+                Перетащите ползунок, чтобы сравнить «обычную» поверхность и&nbsp;финиш LUMO.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <BeforeAfter
+              beforeGradient={APPLICATION_BEFOREAFTER[a.id].before}
+              afterGradient={APPLICATION_BEFOREAFTER[a.id].after}
+              beforeCaption={APPLICATION_BEFOREAFTER[a.id].beforeCaption}
+              afterCaption={APPLICATION_BEFOREAFTER[a.id].afterCaption}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Fits you if */}
+      <section className="py-16 md:py-20 bg-[color:var(--bg-elevated)]">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="max-w-[820px]">
+              <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                Простыми словами
+              </span>
+              <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-bold tracking-[-0.02em] text-[clamp(26px,3.4vw,40px)] leading-[1.08] text-[color:var(--text-primary)]">
+                Подойдёт вам, если...
+              </h2>
+            </div>
+          </Reveal>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+            <Reveal>
+              <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--accent-brass)]">
+                Да — это для вас
+              </div>
+              <ul className="mt-5 space-y-3">
+                {FITS_YOU[a.id as ApplicationId].yes.map((p) => (
+                  <li key={p} className="flex items-start gap-3 text-[14.5px] text-[color:var(--text-primary)] leading-relaxed">
+                    <Check size={18} aria-hidden className="mt-0.5 shrink-0 text-[color:var(--accent-brass)]" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                Нет — выберите другое
+              </div>
+              <ul className="mt-5 space-y-3">
+                {FITS_YOU[a.id as ApplicationId].no.map((p) => (
+                  <li key={p} className="flex items-start gap-3 text-[14.5px] text-[color:var(--text-muted)] leading-relaxed">
+                    <span aria-hidden className="mt-0.5 shrink-0 text-[color:var(--text-muted)]">×</span>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       {/* Risk zones + Preparation */}
       <section className="py-20 md:py-28 bg-[color:var(--bg-elevated)]">
@@ -185,6 +261,37 @@ export default async function ApplicationPage({
                 </dd>
               </div>
             </dl>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Prep checklist */}
+      <section className="py-20 md:py-28">
+        <div className="container-lumo grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
+          <Reveal className="md:col-span-5">
+            <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+              До прихода мастера
+            </span>
+            <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-medium text-[clamp(24px,3vw,36px)] leading-[1.1] text-[color:var(--text-primary)]">
+              {PREP_CHECKLIST[a.id as ApplicationId].title}
+            </h2>
+            <p className="mt-5 text-[14px] leading-relaxed text-[color:var(--text-secondary)]">
+              Этот чек-лист отправит менеджер после первой консультации. Сохраните его, чтобы&nbsp;не&nbsp;терять время.
+            </p>
+          </Reveal>
+          <Reveal className="md:col-span-7" delay={0.05}>
+            <ul className="space-y-3">
+              {PREP_CHECKLIST[a.id as ApplicationId].items.map((p, i) => (
+                <li key={p} className="flex items-start gap-4 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-card)] px-5 py-4">
+                  <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.16em] uppercase text-[color:var(--accent-brass)] mt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[14.5px] text-[color:var(--text-secondary)] leading-relaxed">
+                    {p}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
