@@ -1,42 +1,44 @@
 import type { Metadata } from "next";
-import { Unbounded, Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-// Phase 2.5 perf trim: keep only critical weights actually used in markup.
-// Unbounded — 500 (medium), 700 (bold), 900 (black) — covers H-titles + LUMO logo.
-// Cormorant — 300 italic + 400 italic — only these are referenced in JSX.
-// Inter — 400 + 600 — body + button labels.
-// JetBrains Mono — 300 + 400 — facts grid + metadata.
-const unbounded = Unbounded({
+// Phase 3 — self-hosted WOFF2 with cyrillic+latin subsets in /public/fonts/.
+// Single weight per family (the one we actually render); CSS will fall back to
+// the variable family for any non-loaded weights.
+const unbounded = localFont({
+  src: "../public/fonts/Unbounded-Bold.woff2",
+  weight: "700",
   variable: "--font-unbounded",
-  subsets: ["latin", "cyrillic"],
-  weight: ["500", "700", "900"],
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const cormorant = localFont({
+  src: [
+    { path: "../public/fonts/CormorantGaramond-Italic.woff2", weight: "400", style: "italic" },
+    { path: "../public/fonts/CormorantGaramond-BoldItalic.woff2", weight: "700", style: "italic" },
+    { path: "../public/fonts/CormorantGaramond-Bold.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-cormorant",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400"],
-  style: ["italic"],
   display: "swap",
 });
 
-const inter = Inter({
+const inter = localFont({
+  src: [
+    { path: "../public/fonts/Inter-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/Inter-Bold.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-inter",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "600"],
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const mono = localFont({
+  src: "../public/fonts/JetBrainsMono-Regular.woff2",
+  weight: "400",
   variable: "--font-mono",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400"],
   display: "swap",
 });
 
@@ -69,11 +71,21 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     type: "website",
     siteName: "LUMO",
+    images: [
+      {
+        url: "/api/og?title=Жидкий металл, нанесённый как ремесло&subtitle=Разница не в банке. Разница в руках.",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "LUMO — жидкий металл, нанесённый как ремесло",
     description: "Разница не в банке. Разница в руках.",
+    images: [
+      "/api/og?title=Жидкий металл, нанесённый как ремесло&subtitle=Разница не в банке. Разница в руках.",
+    ],
   },
   robots: { index: true, follow: true },
 };
