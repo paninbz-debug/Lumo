@@ -1,16 +1,15 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import { FINAL_CTA } from "@/lib/content";
 import { submitLead } from "@/lib/submit-lead";
+import { withBase } from "@/lib/asset-path";
+import { COLLECTION_PHOTOS } from "@/lib/copy/photos";
 
-const BackgroundBeams = dynamic(
-  () => import("@/components/ui/background-beams").then((m) => m.BackgroundBeams),
-  { ssr: false }
-);
+const BG_PHOTO = COLLECTION_PHOTOS["deep-mirror"][9].src;
 
 export function FinalCta() {
   const [submitting, setSubmitting] = useState(false);
@@ -28,12 +27,19 @@ export function FinalCta() {
       aria-labelledby="contact-title"
       className="relative isolate py-28 md:py-40 bg-[color:var(--bg-primary)] overflow-hidden"
     >
-      <BackgroundBeams className="opacity-50" />
-      {/* metallic grain backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grain opacity-[0.6]"
-      />
+      {/* photo background — replaces BackgroundBeams */}
+      <div aria-hidden className="absolute inset-0 -z-20 overflow-hidden">
+        <Image
+          src={withBase(BG_PHOTO)}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.6]"
+        />
+        <div className="absolute inset-0 bg-[color:var(--bg-primary)]/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--bg-primary)]/40 via-transparent to-[color:var(--bg-primary)]/85" />
+        <div className="absolute inset-0 bg-grain opacity-50 mix-blend-overlay" />
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-32 left-1/2 -translate-x-1/2 w-[80vw] max-w-[1100px] aspect-square rounded-full opacity-[0.18] blur-3xl"

@@ -44,9 +44,14 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-[0.55]"
+          className="object-cover opacity-[0.85]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--bg-primary)]/90 via-[color:var(--bg-primary)]/70 to-[color:var(--bg-primary)]" />
+        {/* Asymmetric gradient: dark left for text, photo visible right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--bg-primary)]/95 via-[color:var(--bg-primary)]/70 to-[color:var(--bg-primary)]/30" />
+        {/* Bottom fade so the next section reads cleanly */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[color:var(--bg-primary)]" />
+        {/* metallic-grain noise texture for depth */}
+        <div className="absolute inset-0 bg-grain opacity-40 mix-blend-overlay" />
       </div>
 
       {/* animated metallic mesh — Phase 2.5 visual layer */}
