@@ -7,8 +7,8 @@ import { PageCta } from "@/components/sections/page-cta";
 import { FactsGrid } from "@/components/sections/facts-grid";
 import { Reveal } from "@/components/reveal";
 import { COLLECTIONS_LIST, COLLECTIONS_INDEX, getCollection } from "@/lib/copy/collections";
-import { COLLECTION_GALLERY, PLACEHOLDER_HINT } from "@/lib/copy/visuals";
-import { ImageLightboxGallery } from "@/components/ui/image-lightbox";
+import { COLLECTION_PHOTOS } from "@/lib/copy/photos";
+import { ImageLightboxGallery, type LightboxItem } from "@/components/ui/image-lightbox";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -196,9 +196,12 @@ export default async function CollectionPage({
           </Reveal>
           <Reveal>
             <ImageLightboxGallery
-              items={[...COLLECTION_GALLERY[c.id]]}
+              items={COLLECTION_PHOTOS[c.id].map<LightboxItem>((p) => ({
+                image: p.src,
+                caption: p.caption,
+              }))}
               aspect="4/5"
-              placeholderHint={PLACEHOLDER_HINT}
+              placeholderHint="Фото на странице — временные, использованы для иллюстрации стилистики (Unsplash). После собственной фотосессии LUMO заменим. См. /credits."
             />
           </Reveal>
         </div>

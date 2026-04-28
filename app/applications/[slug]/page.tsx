@@ -9,8 +9,10 @@ import { Reveal } from "@/components/reveal";
 import { APPLICATIONS_LIST, getApplication, type ApplicationId } from "@/lib/copy/applications";
 import { getCollection } from "@/lib/copy/collections";
 import { APPLICATION_BEFOREAFTER } from "@/lib/copy/visuals";
+import { APPLICATION_PHOTOS } from "@/lib/copy/photos";
 import { FITS_YOU, PREP_CHECKLIST } from "@/lib/copy/applications-extras";
 import { BeforeAfter } from "@/components/ui/before-after";
+import { ImageLightboxGallery, type LightboxItem } from "@/components/ui/image-lightbox";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -205,6 +207,36 @@ export default async function ApplicationPage({
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Photo gallery — temp Unsplash, see /credits */}
+      <section className="py-20 md:py-28">
+        <div className="container-lumo">
+          <Reveal>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+              <div>
+                <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.22em] uppercase text-[color:var(--text-muted)]">
+                  Атмосфера
+                </span>
+                <h2 className="mt-5 font-[family-name:var(--font-unbounded)] font-bold tracking-[-0.02em] text-[clamp(26px,3.6vw,44px)] leading-[1.08] text-[color:var(--text-primary)]">
+                  Как это выглядит вживую
+                </h2>
+              </div>
+              <p className="md:text-right md:max-w-[360px] text-[14px] leading-relaxed text-[color:var(--text-secondary)]">
+                Изображения подобраны под стилистику. Реальные кейсы LUMO — после собственной фотосессии. <Link href="/credits" className="underline decoration-dotted underline-offset-4">Атрибуция</Link>.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <ImageLightboxGallery
+              items={(APPLICATION_PHOTOS[a.id] ?? []).map<LightboxItem>((p) => ({
+                image: p.src,
+                caption: p.caption,
+              }))}
+              aspect="4/5"
+            />
+          </Reveal>
         </div>
       </section>
 

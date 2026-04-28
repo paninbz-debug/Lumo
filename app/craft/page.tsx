@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/sections/page-hero";
 import { PageCta } from "@/components/sections/page-cta";
 import { FactsGrid } from "@/components/sections/facts-grid";
 import { Reveal } from "@/components/reveal";
 import { CRAFT_PAGE } from "@/lib/copy/craft";
-import { CRAFT_PROCESS, PLACEHOLDER_HINT } from "@/lib/copy/visuals";
+import { CRAFT_PHOTOS } from "@/lib/copy/photos";
 import { GlossaryTip } from "@/components/ui/glossary";
 import { GLOSSARY } from "@/lib/copy/glossary";
 
@@ -57,13 +59,19 @@ export default function CraftPage() {
         <div className="container-lumo">
           <Reveal>
             <ul className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
-              {CRAFT_PROCESS.map((p, i) => (
-                <li key={p.caption} className="placeholder-grain relative aspect-[4/5] rounded-xl border border-[color:var(--border)] overflow-hidden" style={{ background: p.gradient }}>
-                  <span className="absolute top-3 left-3 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-white/85">
+              {CRAFT_PHOTOS.map((p, i) => (
+                <li key={p.caption} className="relative aspect-[4/5] rounded-xl border border-[color:var(--border)] overflow-hidden bg-[color:var(--bg-card)]">
+                  <Image
+                    src={p.src}
+                    alt={p.caption}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute top-3 left-3 z-10 font-[family-name:var(--font-mono)] text-[10px] tracking-[0.18em] uppercase text-white drop-shadow">
                     0{i + 1}
                   </span>
-                  <span aria-hidden className="absolute inset-0 flex items-center justify-center text-[44px] md:text-[56px] opacity-60">{p.emoji}</span>
-                  <span className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/65 to-transparent">
+                  <span className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/75 via-black/30 to-transparent">
                     <span className="block font-[family-name:var(--font-mono)] text-[10px] tracking-[0.04em] text-white">
                       {p.caption}
                     </span>
@@ -73,7 +81,7 @@ export default function CraftPage() {
             </ul>
           </Reveal>
           <p className="mt-4 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.04em] text-[color:var(--text-muted)]">
-            {PLACEHOLDER_HINT}. Реальные кадры из мастер-класса AuraMetal Academy будут добавлены после съёмки.
+            Фото — временные иллюстрации (Unsplash). Реальные кадры из мастер-класса AuraMetal Academy будут добавлены после съёмки. <Link href="/credits" className="underline decoration-dotted underline-offset-4">Атрибуция</Link>.
           </p>
         </div>
       </section>
