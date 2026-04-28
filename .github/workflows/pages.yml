@@ -27,6 +27,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Strip server-only routes (api/) — incompatible with output:export
+        run: rm -rf app/api
       - name: Build static site
         env:
           GH_PAGES: "1"
