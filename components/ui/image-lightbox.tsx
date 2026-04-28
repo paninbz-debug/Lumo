@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type LightboxItem = {
-  /** CSS gradient string for placeholder */
-  gradient: string;
+  /** Real image src (preferred — uses next/image). Optional. */
+  image?: string;
+  /** CSS gradient string for placeholder when no image. */
+  gradient?: string;
   caption: string;
   emoji?: string;
 };
@@ -70,16 +73,28 @@ export function ImageLightboxGallery({
               aria-label={`Открыть «${it.caption}»`}
             >
               <span
-                className="placeholder-grain relative block w-full overflow-hidden rounded-xl border border-[color:var(--border)]"
-                style={{ aspectRatio: aspect, background: it.gradient }}
+                className={cn(
+                  "relative block w-full overflow-hidden rounded-xl border border-[color:var(--border)]",
+                  !it.image && "placeholder-grain"
+                )}
+                style={{ aspectRatio: aspect, background: it.image ? undefined : it.gradient }}
               >
-                {it.emoji && (
+                {it.image && (
+                  <Image
+                    src={it.image}
+                    alt={it.caption}
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                {it.emoji && !it.image && (
                   <span className="absolute inset-0 flex items-center justify-center text-[44px] md:text-[56px] opacity-60 transition-transform duration-500 group-hover:scale-110" aria-hidden>
                     {it.emoji}
                   </span>
                 )}
-                <span className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-                  <span className="block font-[family-name:var(--font-mono)] text-[10px] tracking-[0.16em] uppercase text-[color:var(--text-primary)]">
+                <span className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  <span className="block font-[family-name:var(--font-mono)] text-[10px] tracking-[0.16em] uppercase text-white">
                     {it.caption}
                   </span>
                 </span>
@@ -130,13 +145,26 @@ export function ImageLightboxGallery({
 
             <figure className="w-full max-w-[1100px]">
               <span
-                className="placeholder-grain relative block w-full rounded-2xl overflow-hidden border border-[color:var(--border-strong)]"
+                className={cn(
+                  "relative block w-full rounded-2xl overflow-hidden border border-[color:var(--border-strong)]",
+                  !items[index].image && "placeholder-grain"
+                )}
                 style={{
                   aspectRatio: aspect,
-                  background: items[index].gradient,
+                  background: items[index].image ? undefined : items[index].gradient,
                 }}
               >
-                {items[index].emoji && (
+                {items[index].image && (
+                  <Image
+                    src={items[index].image as string}
+                    alt={items[index].caption}
+                    fill
+                    sizes="100vw"
+                    className="object-contain"
+                    priority
+                  />
+                )}
+                {items[index].emoji && !items[index].image && (
                   <span className="absolute inset-0 flex items-center justify-center text-[120px] md:text-[180px] opacity-65" aria-hidden>
                     {items[index].emoji}
                   </span>
