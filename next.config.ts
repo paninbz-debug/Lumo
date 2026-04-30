@@ -3,9 +3,11 @@ import type { NextConfig } from "next";
 const isPages = process.env.GH_PAGES === "1";
 
 const nextConfig: NextConfig = {
-  // Static export for GitHub Pages.
-  // Removed when we move to Vercel/Railway in Phase 2 (real /api/lead route).
-  output: isPages ? "export" : undefined,
+  // Three deploy modes:
+  //   GH_PAGES=1 → static export (current Phase 1)
+  //   default   → 'standalone' (Railway/Docker; minimal runtime artefact)
+  //   vercel    → undefined (Vercel auto-detects)
+  output: isPages ? "export" : "standalone",
   basePath: isPages ? "/Lumo" : undefined,
   trailingSlash: isPages || undefined,
   images: { unoptimized: true },
