@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DraftBanner } from "@/components/draft-banner";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { DRAFT_MODE } from "@/lib/copy/draft-mode";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -114,11 +115,13 @@ export default function RootLayout({
       )}
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
-          <DraftBanner />
-          <Header />
-          <main id="main-content" className="flex-1">{children}</main>
-          <Footer />
+          <SmoothScroll>
+            <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
+            <DraftBanner />
+            <Header />
+            <main id="main-content" className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
           <Toaster
             position="bottom-right"
             theme="dark"
