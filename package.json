@@ -7,6 +7,11 @@
     "build": "next build",
     "start": "next start -p 3300",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:critical": "playwright test --grep @critical",
     "check-draft": "node -e \"const v=require('fs').readFileSync('lib/copy/draft-mode.ts','utf8');if(!v.includes('DRAFT_MODE = true')){console.log('OK — DRAFT_MODE=false (live)');process.exit(0)};console.warn('\\\\n⚠  LUMO is in DRAFT_MODE — robots noindex active, do not promote publicly.\\\\n   Toggle lib/copy/draft-mode.ts after own photoshoot.\\\\n');\""
   },
   "dependencies": {
@@ -29,12 +34,16 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@sentry/nextjs": "^10.51.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/ui": "^4.1.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.5"
   },
   "packageManager": "pnpm@9.15.4"
 }

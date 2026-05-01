@@ -1,0 +1,83 @@
+name: Synthetic uptime
+
+# Per RESEARCH_testing_bugfixing_2026 §3.1 — own cron-job.org + GitHub Actions
+# Playwright is the cheapest synthetic monitor for solo-founder. Runs every 15
+# minutes against prod, fails the workflow if the @critical landing flow breaks
+# (which surfaces as a red badge + GitHub email + can be wired to Telegram via
+# webhook in repo Secrets).
+#
+# This catches:
+#   - Catastrophic deploy regressions Sentry can't see (e.g. SSR panic that
+#     never reaches the client SDK)
+#   - DNS / cert expiry on `*.up.railway.app` or future custom domain
+#   - 3rd-party CDN failures (Unsplash for hero photos, font CDN if ever added)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: "Override base URL (default: prod)"
+        default: "https://lumo-production-a4a7.up.railway.app"
+        required: false
+
+jobs:
+  synthetic-landing:
+    name: Synthetic — landing @critical
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --prod=false
+      - name: Install Playwright (chromium only)
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Probe homepage (HTTP 200 + brand string)
+        run: |
+          URL="${{ github.event.inputs.target_url || 'https://lumo-production-a4a7.up.railway.app' }}"
+          echo "Probing $URL"
+          BODY=$(curl -fsSL --max-time 30 "$URL")
+          echo "$BODY" | grep -q "Заказать выкрас" || (echo "::error::brand CTA missing in HTML"; exit 1)
+          echo "$BODY" | grep -q "LUMO" || (echo "::error::LUMO marker missing in HTML"; exit 1)
+      - name: Probe /contacts + /collections deep links (HTTP 200)
+        run: |
+          URL="${{ github.event.inputs.target_url || 'https://lumo-production-a4a7.up.railway.app' }}"
+          for path in /contacts /collections /collections/deep-mirror /applications; do
+            CODE=$(curl -fsSL -o /dev/null -w "%{http_code}" --max-time 30 "$URL$path")
+            if [ "$CODE" != "200" ]; then
+              echo "::error::$path returned HTTP $CODE"
+              exit 1
+            fi
+          done
+      - name: Probe /api/lead validation surface
+        run: |
+          URL="${{ github.event.inputs.target_url || 'https://lumo-production-a4a7.up.railway.app' }}"
+          # Valid lead — must return 200 ok:true (non-strict managed)
+          OK=$(curl -fsSL -X POST "$URL/api/lead" \
+            -H 'Content-Type: application/json' \
+            -d '{"name":"synthetic-probe","source":"home-final-cta"}' | grep -c '"ok":true' || true)
+          if [ "$OK" -lt 1 ]; then
+            echo "::error::/api/lead did not return ok:true on valid payload"
+            exit 1
+          fi
+      - name: Run Playwright @critical against prod
+        run: pnpm test:e2e:critical
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.target_url || 'https://lumo-production-a4a7.up.railway.app' }}
+          CI: "1"
+      - name: Upload trace on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-trace
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
