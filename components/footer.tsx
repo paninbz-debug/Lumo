@@ -3,14 +3,14 @@ import { FOOTER, NAV } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 border-t border-[color:var(--border)] bg-[color:var(--bg-elevated)]">
-      <div className="container-lumo py-20 grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-10">
+    <footer className="relative mt-40 border-t border-[color:var(--border)] bg-[color:var(--bg-elevated)]">
+      <div className="container-lumo py-24 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10">
         <div className="md:col-span-1">
           <div className="font-[family-name:var(--font-unbounded)] font-black text-2xl tracking-[0.2em] text-[color:var(--text-primary)]">
             LUMO
           </div>
-          <p className="mt-3 text-sm text-[color:var(--text-secondary)] leading-relaxed max-w-xs">
-            Премиальное применение жидкого металла. Партнёр AuraMetal.
+          <p className="mt-4 text-sm text-[color:var(--text-secondary)] leading-relaxed max-w-xs">
+            Atelier — применение жидкого металла. Партнёр AuraMetal.
           </p>
           <div className="mt-7 space-y-2 font-[family-name:var(--font-mono)] text-[13px] text-[color:var(--text-secondary)]">
             <div>{FOOTER.contacts.city}</div>

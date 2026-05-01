@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { TiltCard } from "@/components/ui/tilt-card";
 import { withBase } from "@/lib/asset-path";
 import { COLLECTION_PHOTOS } from "@/lib/copy/photos";
 import { cn } from "@/lib/utils";
@@ -85,21 +86,23 @@ export function FeaturedProjects() {
                     reverse && "md:[direction:rtl]"
                   )}
                 >
-                  {/* photo — 7/12 cols, ~60% */}
+                  {/* photo — 7/12 cols, ~60%, premium tilt-on-cursor */}
                   <div className="md:col-span-7 [direction:ltr]">
-                    <Link
-                      href={p.collectionHref}
-                      className="group block relative aspect-[4/3] md:aspect-[16/11] overflow-hidden rounded-2xl border border-[color:var(--border)]"
-                    >
-                      <Image
-                        src={withBase(p.photo)}
-                        alt={`${p.title} — ${p.collection}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 60vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <span aria-hidden className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl" />
-                    </Link>
+                    <TiltCard className="rounded-2xl">
+                      <Link
+                        href={p.collectionHref}
+                        className="group block relative aspect-[4/3] md:aspect-[16/11] overflow-hidden rounded-2xl border border-[color:var(--border)]"
+                      >
+                        <Image
+                          src={withBase(p.photo)}
+                          alt={`${p.title} — ${p.collection}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 60vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                        />
+                        <span aria-hidden className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl" />
+                      </Link>
+                    </TiltCard>
                   </div>
 
                   {/* copy — 5/12 cols, ~40% */}

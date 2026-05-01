@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
-import { MovingBorderButton } from "@/components/ui/moving-border";
+import { MagneticButton } from "@/components/magnetic-button";
 import { FINAL_CTA } from "@/lib/content";
 import { submitLead } from "@/lib/submit-lead";
 import { withBase } from "@/lib/asset-path";
@@ -105,10 +105,10 @@ export function FinalCta() {
               </label>
               <input id="lead-date" name="date" type="date" required className="lumo-input" />
             </div>
-            <div className="md:col-span-2 mt-4 flex flex-col items-center gap-5">
-              <MovingBorderButton type="submit" ariaLabel={FINAL_CTA.submit}>
+            <div className="md:col-span-2 mt-6 flex flex-col items-center gap-6">
+              <MagneticButton type="submit" variant="primary" aria-label={FINAL_CTA.submit}>
                 {submitting ? "Отправляем…" : FINAL_CTA.submit}
-              </MovingBorderButton>
+              </MagneticButton>
               <p className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.06em] text-[color:var(--text-muted)] max-w-[640px] text-center leading-relaxed">
                 {FINAL_CTA.formNote}
               </p>

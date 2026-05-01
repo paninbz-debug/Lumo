@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { HERO } from "@/lib/content";
-import { MovingBorderButton } from "@/components/ui/moving-border";
+import { MagneticButton } from "@/components/magnetic-button";
 import { HERO_PHOTO } from "@/lib/copy/photos";
 import { withBase } from "@/lib/asset-path";
 
@@ -98,9 +98,9 @@ export function Hero() {
 
         <motion.p
           {...stagger(3)}
-          className="mt-6 md:mt-8 text-[color:var(--text-primary)] text-[17px] md:text-[19px] leading-relaxed max-w-[760px]"
+          className="mt-6 md:mt-8 text-[color:var(--text-primary)] text-[17px] md:text-[19px] leading-relaxed max-w-[640px]"
         >
-          Премиальное покрытие для стен, фасадов и мебели — настоящий металл (медь, латунь, бронза, никель, алюминий) в&nbsp;жидкой форме. Без швов, без пластика, без масс-производства. На&nbsp;десятилетия.
+          Декоративное покрытие на основе настоящего металла — медь, латунь, бронза, никель, алюминий — в&nbsp;жидкой форме. Без швов, без пластика, без масс-производства. На&nbsp;десятилетия.
         </motion.p>
 
         <motion.p
@@ -112,17 +112,17 @@ export function Hero() {
 
         <motion.div
           {...stagger(4)}
-          className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4"
+          className="mt-10 md:mt-14 flex flex-col sm:flex-row gap-4"
         >
-          <MovingBorderButton href="#contact" ariaLabel="Заказать выкрас">
+          <MagneticButton href="#contact" variant="primary" aria-label="Заказать выкрас">
             <span className="inline-flex items-center gap-2">
               {HERO.ctaPrimary}
               <ArrowRight size={16} aria-hidden />
             </span>
-          </MovingBorderButton>
+          </MagneticButton>
           <a
             href="#collections"
-            className="inline-flex items-center justify-center px-7 py-4 rounded-full border border-[color:var(--border-strong)] text-[color:var(--text-primary)] text-[13px] font-semibold tracking-[0.06em] uppercase hover:border-[color:var(--accent-brass)] hover:text-[color:var(--accent-brass)] transition-colors min-h-[44px]"
+            className="inline-flex items-center justify-center px-7 py-4 rounded-full border border-[color:var(--border-strong)] text-[color:var(--text-primary)] text-[13px] font-semibold tracking-[0.1em] uppercase hover:border-[color:var(--accent-brass)] hover:text-[color:var(--accent-brass)] transition-colors min-h-[44px]"
           >
             {HERO.ctaSecondary}
           </a>
@@ -137,7 +137,7 @@ export function Hero() {
 
         <motion.div
           {...stagger(6)}
-          className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 pt-10 border-t border-[color:var(--border)]"
+          className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 pt-12 border-t border-[color:var(--border)]"
         >
           {[
             { v: "5", s: "Коллекций — Deep Mirror, Aged Patina, Brushed Daylight, Liquid Mercury, Copper Fire" },
@@ -146,7 +146,7 @@ export function Hero() {
             { v: "9H", s: "Полисилазан — защита поверхности до 1000 °C" },
           ].map((m) => (
             <div key={m.v} className="flex flex-col gap-2">
-              <div className="font-[family-name:var(--font-mono)] text-[28px] md:text-[36px] leading-none text-gradient-warm">
+              <div className="font-[family-name:var(--font-mono)] text-[28px] md:text-[36px] leading-none text-gradient-warm numerals-tabular">
                 {m.v}
               </div>
               <div className="text-[12px] leading-snug text-[color:var(--text-muted)] max-w-[220px]">
