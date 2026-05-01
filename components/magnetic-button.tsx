@@ -14,6 +14,7 @@ type Props = {
   variant?: Variant;
   className?: string;
   type?: "button" | "submit";
+  "aria-label"?: string;
 };
 
 export function MagneticButton({
@@ -23,6 +24,7 @@ export function MagneticButton({
   variant = "primary",
   className,
   type = "button",
+  "aria-label": ariaLabel,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -40,7 +42,7 @@ export function MagneticButton({
   const onLeave = () => setPos({ x: 0, y: 0 });
 
   const baseStyles =
-    "relative inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-[13px] font-semibold tracking-[0.06em] uppercase transition-shadow";
+    "relative inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-[13px] font-semibold tracking-[0.1em] uppercase transition-shadow min-h-[44px]";
 
   const variants: Record<Variant, string> = {
     primary:
@@ -68,13 +70,13 @@ export function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} className="inline-flex" onClick={onClick}>
+      <a href={href} className="inline-flex" onClick={onClick} aria-label={ariaLabel}>
         {inner}
       </a>
     );
   }
   return (
-    <button type={type} onClick={onClick} className="inline-flex">
+    <button type={type} onClick={onClick} className="inline-flex" aria-label={ariaLabel}>
       {inner}
     </button>
   );

@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DraftBanner } from "@/components/draft-banner";
+import { LenisProvider } from "@/components/lenis-provider";
 import { DRAFT_MODE } from "@/lib/copy/draft-mode";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Премиальное применение жидкого металла на стенах, фасадах и мебели. Латунь, медь, бронза, никель, алюминий. Москва, по предварительной записи. Партнёр AuraMetal.",
+    "Atelier LUMO — мастерская применения жидкого металла на стенах, фасадах и мебели. Латунь, медь, бронза, никель, алюминий. Москва, по предварительной записи. Партнёр AuraMetal.",
   keywords: [
     "жидкий металл",
     "AuraMetal",
@@ -114,23 +115,25 @@ export default function RootLayout({
       )}
       <body className="min-h-screen flex flex-col antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
-          <DraftBanner />
-          <Header />
-          <main id="main-content" className="flex-1">{children}</main>
-          <Footer />
-          <Toaster
-            position="bottom-right"
-            theme="dark"
-            toastOptions={{
-              style: {
-                background: "var(--bg-card)",
-                color: "var(--text-primary)",
-                border: "1px solid var(--border-strong)",
-                fontFamily: "var(--font-inter), sans-serif",
-              },
-            }}
-          />
+          <LenisProvider>
+            <a href="#main-content" className="skip-to-content">Перейти к содержимому</a>
+            <DraftBanner />
+            <Header />
+            <main id="main-content" className="flex-1">{children}</main>
+            <Footer />
+            <Toaster
+              position="bottom-right"
+              theme="dark"
+              toastOptions={{
+                style: {
+                  background: "var(--bg-card)",
+                  color: "var(--text-primary)",
+                  border: "1px solid var(--border-strong)",
+                  fontFamily: "var(--font-inter), sans-serif",
+                },
+              }}
+            />
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

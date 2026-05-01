@@ -22,8 +22,7 @@ export function Comparison() {
               <span className="text-gradient-warm">LUMO</span> и&nbsp;случайный подрядчик
             </h2>
             <p className="mt-6 text-[15px] md:text-[17px] leading-relaxed text-[color:var(--text-secondary)] max-w-[640px]">
-              Не цена в смете отличает премиальное применение от&nbsp;стройдомового.
-              Различие — в&nbsp;каждой из&nbsp;четырнадцати позиций ниже.
+              Различие не в цене сметы, а в&nbsp;каждой из&nbsp;четырнадцати позиций ниже.
             </p>
           </div>
         </Reveal>

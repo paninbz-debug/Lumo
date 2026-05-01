@@ -74,8 +74,23 @@
 }
 
 html {
+  /* Lenis manages smooth scroll; native fallback for prefers-reduced-motion or pre-hydration. */
   scroll-behavior: smooth;
   background: var(--bg-primary);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 body {
@@ -85,11 +100,52 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss01", "cv11";
+  /* premium baseline rhythm — Bringhurst measure */
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
   background: var(--accent-brass);
   color: var(--bg-primary);
+}
+
+/* ============ MICRO-TYPOGRAPHY ============ */
+/* tabular lining figures — for spec rows, prices, stats */
+.numerals-tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* old-style figures — for inline running prose */
+.numerals-oldstyle {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-feature-settings: "onum" 1, "pnum" 1;
+}
+
+/* true small caps (falls back to tracked uppercase if font lacks SC) */
+.smcp {
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "smcp" 1, "c2sc" 1;
+  letter-spacing: 0.04em;
+}
+
+/* premium "wide-tracked label" — replaces shouty all-caps button */
+.tracking-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-feature-settings: "tnum" 1;
+}
+
+/* hero/display H1 — bring leading down per Bringhurst at large sizes */
+.display-tight {
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+/* editorial measure — body column 58–66 chars on 1440px */
+.measure-prose {
+  max-width: 64ch;
 }
 
 /* ============ UTILITIES ============ */
